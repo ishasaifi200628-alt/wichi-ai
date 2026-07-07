@@ -8,7 +8,7 @@ class ConfigManager:
     """
 
     CONFIG_FILE_PATH = "config.yml"
-    DEFAULT_GEMINI_MODEL_ID = "gemini-1.5-flash-latest"
+    DEFAULT_GEMINI_MODEL_ID = "gemini-2.5-flash"
 
     @staticmethod
     def load_config() -> Optional[Dict[str, Any]]:
@@ -54,11 +54,11 @@ class ConfigManager:
         return fine_tune.get('prompt', []) if fine_tune else []
 
     @staticmethod
-    def get_geminiAi_key() -> Optional[str]:
+    def get_gemini_key() -> Optional[str]:
         """
         Retrieve Gemini AI API access key from environment variables.
         """
-        return os.getenv("GEMINIAI_KEY")
+        return os.getenv("GEMINI_KEY")
 
     @staticmethod
     def get_gemini_model_id() -> str:

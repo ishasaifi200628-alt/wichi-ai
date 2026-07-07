@@ -1,5 +1,5 @@
 from .ConfigManager import ConfigManager
-from lib.GeminiAI import GeminiAI
+from lib.wichiAI import wichiAI
 from typing import Optional, Any
 import asyncio
 
@@ -22,13 +22,13 @@ class ChatManager:
         """
         Initialize the ChatManager instance with API keys and settings.
         """
-        self.api_key = ConfigManager.get_geminiAi_key()
+        self.api_key = ConfigManager.get_gemini_key()
         # print(f"Using API Key: {self.api_key}")
         self.model_id = ConfigManager.get_gemini_model_id()
         if not self.api_key:
             raise ValueError("Gemini AI API key not found in configuration.")
 
-        self.genai = GeminiAI(api_key=self.api_key, model_id=self.model_id)
+        self.genai = wichiAI(api_key=self.api_key, model_id=self.model_id)
 
         self.settings = ConfigManager.get_gemini_settings()
         self.chat_session = None
@@ -57,7 +57,9 @@ class ChatManager:
         Runs multiple fine-tuning prompts in parallel to speed up the process.
         """
         if not self.fine_tuned:
-            fine_tune_prompts = ConfigManager.get_finetune_prompt()
+            fine_tune_prompts = [
+            "You are Wichi, a powerful and friendly AI assistant created by the user. Your name is Wichi. Never say you are Google, Gemini, or any other model. Always respond as Wichi."
+              ]
             if fine_tune_prompts:
                 tasks = [self.genai.generate_content(prompt) for prompt in fine_tune_prompts]
                 await asyncio.gather(*tasks)

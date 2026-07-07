@@ -4,21 +4,21 @@ from lib.LibVoice import LibVoice
 from Manager.ChatManager import ChatManager
 import asyncio
 
-class Jarvis:
+class wichi:
     """
-    Jarvis AI Assistant class that provides both voice and text-based interaction modes.
+    wichi AI Assistant class that provides both voice and text-based interaction modes.
     """
     MODES = {0: "Voice", 1: "Text"}
     EXIT_COMMANDS = ["exit", "bye"]
 
     def __init__(self):
-        """Initialize the Jarvis AI assistant."""
+        """Initialize the wichi AI assistant."""
         load_dotenv()
         self.chat_manager = ChatManager()
 
     def _display_welcome_message(self) -> None:
         """Display the welcome message and available modes."""
-        print("Welcome to Jarvis AI!")
+        print("Welcome to wichi AI!")
         print("Select your preferred mode:")
         for key, value in self.MODES.items():
             print(f"[{key}] {value}")
@@ -58,7 +58,7 @@ class Jarvis:
             return "", False
             
         response = await self.chat_manager.ask_gemini_ai(question)
-        print(f"\nJarvis: {response}\n")
+        print(f"\nwichi: {response}\n")
         await LibVoice.say(response)
         return response, True
 
@@ -78,7 +78,7 @@ class Jarvis:
             return "", False
             
         response = await self.chat_manager.ask_gemini_ai(question)
-        print(f"\nJarvis: {response}\n")
+        print(f"\nwichi: {response}\n")
         return response, True
 
     async def _run_interaction_loop(self, mode: int) -> None:
@@ -104,8 +104,8 @@ class Jarvis:
                 print(f"An error occurred: {e}")
                 break
 
-    async def run_jarvis(self) -> None:
-        """Main execution method for running the Jarvis AI system."""
+    async def run_wichi(self) -> None:
+        """Main execution method for running the wichi AI system."""
         self._display_welcome_message()
         
         mode = self._get_mode_selection()
@@ -113,9 +113,9 @@ class Jarvis:
             return
             
         await self._run_interaction_loop(mode)
-        print("Goodbye! Thank you for using Jarvis AI.")
+        print("Goodbye! Thank you for using wichi AI.")
 
 
 if __name__ == "__main__":
-    jarvis = Jarvis()
-    asyncio.run(jarvis.run_jarvis())
+    wichi = wichi()
+    asyncio.run(wichi.run_wichi())

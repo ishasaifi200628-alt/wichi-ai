@@ -2,18 +2,18 @@ import aiohttp
 import json
 import asyncio
 
-class GeminiAI:
+class wichiAI:
     """
     A class to interact with Gemini AI API using direct asynchronous HTTP requests (using aiohttp).
     """
 
     def __init__(self, api_key: str, model_id: str):
         """
-        Initializes the GeminiAI instance with an API key and model ID.
+        Initializes the wichiAI instance with an API key and model ID.
 
         Args:
             api_key (str): The API key for Gemini AI.
-            model_id (str): The model ID (e.g., gemini-1.5-flash).
+            model_id (str): The model ID (e.g., gemini-2.5-flash).
         """
         self.api_key = api_key
         self.model_id = model_id
